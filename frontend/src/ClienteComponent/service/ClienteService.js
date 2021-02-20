@@ -12,6 +12,10 @@ class ClienteService {
         return axios.get( TIPO_API_BASE_URL + "/listar/id/" + clienteID )
     }
 
+    listarPorTipo( tipoId ) {
+        return axios.get( TIPO_API_BASE_URL + "/listar/tipo/" + tipoId )
+    }
+
     crearCliente( cliente ) {
         return axios.post( TIPO_API_BASE_URL + "/registrar", cliente )
     }

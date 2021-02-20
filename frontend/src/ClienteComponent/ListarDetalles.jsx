@@ -1,9 +1,21 @@
 import React, { Component } from "react";
+import ClienteService       from "./service/ClienteService";
 
 class ListarDetalles extends Component {
 
     constructor( props ) {
         super( props );
+        this.state = {
+            clientes : [],
+            idTipo : 1
+        }
+    }
+
+    componentDidMount() {
+        ClienteService.listarPorTipo( this.state.idTipo )
+                      .then( listaC => {
+                          this.setState( { clientes : listaC.data } )
+                      } )
     }
 
     render() {

@@ -33,13 +33,6 @@ public class TipoController {
 		                             HttpStatus.OK );
 	}
 	
-	@GetMapping( "/listar/{idTipo}/clientes" )
-	public ResponseEntity<List<Cliente>> listarClientes( @PathVariable( "idTipo" ) Integer id ) {
-		/*return new ResponseEntity<>( tipoService.findByID( id ),
-		                             HttpStatus.FOUND );*/
-		return null;
-	}
-	
 	@PostMapping( "/registrar" )
 	public ResponseEntity<Tipo> registrarTipo( @RequestBody Tipo tipo ) {
 		Tipo nuevo = tipoService.addNew( tipo );

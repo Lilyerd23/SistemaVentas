@@ -4,6 +4,7 @@ import com.uns.api.Cliente.entity.Cliente;
 import com.uns.api.Cliente.repository.ClienteRepository;
 import com.uns.api.Cliente.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -29,6 +30,11 @@ public class ClienteServiceImpl implements ClienteService {
 			}
 		}
 		return lista;
+	}
+	
+	@Override
+	public List<Cliente> ClienteByTipo( Integer idTipo ) {
+		return new ArrayList<>( clienteRepository.Clientes( idTipo ) );
 	}
 	
 	@Override

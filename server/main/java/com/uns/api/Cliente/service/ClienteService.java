@@ -8,4 +8,6 @@ import java.util.List;
 public interface ClienteService extends GeneralService<Cliente, Integer> {
 	
 	List<Cliente> findClients( String filtro );
+	
+	List<Cliente> ClienteByTipo( Integer idTipo );
 }

@@ -34,6 +34,12 @@ public class ClienteController {
 		                             HttpStatus.OK );
 	}
 	
+	@GetMapping( "/listar/tipo/{idTipo}" )
+	public ResponseEntity<List<Cliente>> listarPorTipo( @PathVariable( "idTipo" ) Integer id ) {
+		return new ResponseEntity<>( clienteService.ClienteByTipo( id ),
+		                             HttpStatus.OK );
+	}
+	
 	@GetMapping( "/listar/{flitro}" )
 	public ResponseEntity<List<Cliente>> filtrarClientes( @PathVariable( "flitro" ) String filtro ) {
 		return new ResponseEntity<>( clienteService.findClients( filtro ),
