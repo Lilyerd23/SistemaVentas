@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ClienteService       from "./service/ClienteService";
+import TipoService          from "./service/TipoService";
 
 class ListarDetalles extends Component {
 
@@ -7,11 +8,21 @@ class ListarDetalles extends Component {
         super( props );
         this.state = {
             clientes : [],
-            idTipo : 1
+            tipos : [],
+            idTipo : '1'
         }
+
+        this.filtrarDatos = this.filtrarDatos.bind( this );
     }
 
     componentDidMount() {
+        TipoService.mostrarTipos()
+                   .then( listaT => {
+                       this.setState( { tipos : listaT.data } )
+                   } )
+    }
+
+    filtrarDatos( idTipo ) {
         ClienteService.listarPorTipo( this.state.idTipo )
                       .then( listaC => {
                           this.setState( { clientes : listaC.data } )
