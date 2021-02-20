@@ -161,18 +161,6 @@ tr:nth-child(odd) {
   box-shadow: -1px 4px 20px 0 rgba(0, 0, 0, 0.35);
 }
 
-.modal-wrapper2 {
-  top: 50%;
-  left: 40%;
-  background: #ededed;
-  width: auto;
-  margin: -29rem 0 0 0;
-  padding: 16px 32px 24px;
-  border: none;
-  outline: 0;
-  box-shadow: -1px 4px 20px 0 rgba(0, 0, 0, 0.35);
-}
-
 .modal-header {
   padding: 1rem 5px 2rem 5px;
   text-align: center;
@@ -326,4 +314,72 @@ select {
   pointer-events: none;
   padding-top: 5px;
   color: #ededed;
+}
+/*=====================================================*/
+
+/*============== Ventana de informacion ===============*/
+
+.modal-wrapper2 {
+  top: 50%;
+  left: 40%;
+  background: #ededed;
+  width: auto;
+  margin: -29rem 0 0 0;
+  padding: 16px 32px 24px;
+  border: none;
+  outline: 0;
+  box-shadow: -1px 4px 20px 0 rgba(0, 0, 0, 0.35);
+}
+
+.container-view {
+  padding: inherit;
+}
+
+.title-client {
+  margin-top: 10px;
+  padding-bottom: 1em;
+}
+
+.title {
+  color: #926517;
+}
+
+.content-body1 {
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.result-tipo, .result-code {
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-bottom: 1px;
+  border-style: solid;
+  margin-top: 10px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+}
+
+.lbl-viewC {
+  font-weight: bolder;
+  font-size: 20px;
+  margin: 0 7rem 0 0;
+}
+
+.content-body2 {
+  margin-bottom: -20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.lbl-viewC2 {
+  font-weight: bolder;
+  font-size: 20px;
+  margin: 0 6rem 0 0;
+}
+
+.dateR {
+  margin: 0 1rem 0 0;
 }

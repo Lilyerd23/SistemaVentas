@@ -17,7 +17,7 @@ class ListarClientes extends Component {
         this.state = {
             clientes : [],
             tipos : [],
-            nombre : '',
+            nombre : 'Lenyn',
             codigo : '',
             estado : '',
             fechaR : '',
@@ -28,8 +28,9 @@ class ListarClientes extends Component {
 
             idCLIENTE : '',
             IDtipoSelect : '1',
+            lblTipo : '',
             modalAbierto : false,
-            modalInfo : true,
+            modalInfo : false,
             isEditar : false
         }
 
@@ -130,8 +131,7 @@ class ListarClientes extends Component {
         ClienteService.buscarClienteporID( ID_Cliente )
                       .then( ( resultado ) => {
                           let clienteSelect = resultado.data;
-                          if ( clienteSelect.tipo.id === '1' ) {
-                          }
+                          this.setLblTipo( clienteSelect.tipo.id )
                           this.setState( {
                               nombre : clienteSelect.descripcion,
                               codigo : clienteSelect.codigo,
@@ -140,6 +140,10 @@ class ListarClientes extends Component {
                               tipoC : clienteSelect.tipo.tipo
                           } )
                       } )
+    }
+
+    setLblTipo( idT ) {
+        this.state.lblTipo = idT === 1 ? 'DNI: ' : 'RUC: '
     }
 
     optionSelected = ( event ) => {
@@ -340,8 +344,40 @@ class ListarClientes extends Component {
                                opacity : this.state.modalInfo ? '1' : '0',
                            } }>
                         <ModalBody>
-                            <h1>sada</h1>
-
+                            <div className="container-view">
+                                <div className="title-client">
+                                    <h2 className="title">Cliente: { this.state.nombre }</h2>
+                                </div>
+                                <div className="content-body1">
+                                    <div className="c1">
+                                        <label className="lbl-viewC">
+                                            Tipo:
+                                        </label>
+                                        <div className="result-tipo">{ this.state.tipoC }</div>
+                                    </div>
+                                    <div className="c2">
+                                        <label className="lbl-viewC">
+                                            { this.state.lblTipo }
+                                        </label>
+                                        <div className="result-code">{ this.state.codigo }</div>
+                                    </div>
+                                </div>
+                                <div className="content-body2">
+                                    <div className="c1">
+                                        <label className="lbl-viewC2 dateR">
+                                            Fecha de Registro:
+                                        </label>
+                                        <div className="result-tipo">{ moment( this.state.fechaR )
+                                            .format( "DD/MM/YYYY" ) }</div>
+                                    </div>
+                                    <div className="c2">
+                                        <label className="lbl-viewC2">
+                                            Estado
+                                        </label>
+                                        <div className="result-code">{ this.state.estado }</div>
+                                    </div>
+                                </div>
+                            </div>
                         </ModalBody>
                     </Modal>
                 </div>
