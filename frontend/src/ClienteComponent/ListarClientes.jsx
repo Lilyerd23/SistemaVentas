@@ -230,7 +230,7 @@ class ListarClientes extends Component {
                                    required/>
                             <label className="lbl">
                                             <span className="txt">
-                                                DNI
+                                                DNI/RUC
                                             </span>
                             </label>
                         </form>
@@ -349,13 +349,13 @@ class ListarClientes extends Component {
                                     <h2 className="title">Cliente: { this.state.nombre }</h2>
                                 </div>
                                 <div className="content-body1">
-                                    <div className="c1">
+                                    <div>
                                         <label className="lbl-viewC">
                                             Tipo:
                                         </label>
                                         <div className="result-tipo">{ this.state.tipoC }</div>
                                     </div>
-                                    <div className="c2">
+                                    <div>
                                         <label className="lbl-viewC">
                                             { this.state.lblTipo }
                                         </label>
@@ -363,18 +363,18 @@ class ListarClientes extends Component {
                                     </div>
                                 </div>
                                 <div className="content-body2">
-                                    <div className="c1">
+                                    <div className="cdate">
                                         <label className="lbl-viewC2 dateR">
                                             Fecha de Registro:
                                         </label>
-                                        <div className="result-tipo">{ moment( this.state.fechaR )
+                                        <div className="result-date">{ moment( this.state.fechaR )
                                             .format( "DD/MM/YYYY" ) }</div>
                                     </div>
-                                    <div className="c2">
+                                    <div>
                                         <label className="lbl-viewC2">
-                                            Estado
+                                            Estado:
                                         </label>
-                                        <div className="result-code">{ this.state.estado }</div>
+                                        <div className="result-state">{ this.state.estado }</div>
                                     </div>
                                 </div>
                             </div>

@@ -322,7 +322,7 @@ select {
 .modal-wrapper2 {
   top: 50%;
   left: 40%;
-  background: #ededed;
+  background: #d2c6c6;
   width: auto;
   margin: -32rem -12rem 0 0;
   padding: 16px 32px 24px;
@@ -338,10 +338,12 @@ select {
 .title-client {
   margin-top: 10px;
   padding-bottom: 1em;
+  align-content: center;
 }
 
 .title {
-  color: #926517;
+  color: #12192c;
+  text-align: center;
 }
 
 .content-body1 {
@@ -351,15 +353,18 @@ select {
   margin-bottom: 30px;
 }
 
-.result-tipo, .result-code {
+.result-tipo, .result-code, .result-date, .result-state {
   border-top: 0;
   border-right: 0;
   border-left: 0;
-  border-bottom: 1px;
+  border-bottom: 2px;
   border-style: solid;
+  border-bottom-color: #121945;
   margin-top: 10px;
   padding-bottom: 5px;
   padding-left: 5px;
+  text-align: center;
+  width: auto;
 }
 
 .lbl-viewC {
@@ -377,9 +382,13 @@ select {
 .lbl-viewC2 {
   font-weight: bolder;
   font-size: 20px;
-  margin: 0 6rem 0 0;
+  margin: 0 5.5rem 0 0;
 }
 
 .dateR {
   margin: 0 1rem 0 0;
+}
+
+.cdate {
+  margin-right: 20px;
 }
