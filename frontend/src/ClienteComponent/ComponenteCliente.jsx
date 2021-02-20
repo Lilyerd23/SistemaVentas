@@ -76,7 +76,7 @@ class ComponenteCliente extends Component {
                                 <br/>
                                 <div className="nav_btn">
                                     <i className="icon_options"><FontAwesomeIcon icon={ faInfoCircle }/></i>
-                                    <a href="/#" className="btn_acceso btn_D">
+                                    <a href={ "/view-detalles" } className="btn_acceso btn_D">
                                         <span/>
                                         <span/>
                                         <span/>

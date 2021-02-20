@@ -17,7 +17,7 @@ class ListarClientes extends Component {
         this.state = {
             clientes : [],
             tipos : [],
-            nombre : 'Lenyn',
+            nombre : '',
             codigo : '',
             estado : '',
             fechaR : '',
