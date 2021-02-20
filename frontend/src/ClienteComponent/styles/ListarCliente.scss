@@ -322,7 +322,7 @@ select {
 .modal-wrapper2 {
   top: 50%;
   left: 40%;
-  background: #d2c6c6;
+  background: #dbd3d3;
   width: auto;
   margin: -32rem -12rem 0 0;
   padding: 16px 32px 24px;
@@ -344,6 +344,7 @@ select {
 .title {
   color: #12192c;
   text-align: center;
+  cursor: default;
 }
 
 .content-body1 {
@@ -365,6 +366,7 @@ select {
   padding-left: 5px;
   text-align: center;
   width: auto;
+  cursor: default;
 }
 
 .lbl-viewC {
