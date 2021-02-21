@@ -25,6 +25,7 @@ class ListarDetalles extends Component {
                    .then( listaT => {
                        this.setState( { tipos : listaT.data } )
                    } )
+        this.filtrarDatos();
     }
 
     filtrarDatos() {
@@ -50,7 +51,7 @@ class ListarDetalles extends Component {
                     <div className="search-list">
                         <div className="dropdown-viewC">
                             <select className="dropdown-list-viewC" value={ this.state.IDtipoSelect }
-                                    onChange={ this.optionSelected }>
+                                    onChange={ this.optionSelected } onClick={ this.filtrarDatos }>
                                 { this.state.tipos.map(
                                     TIPO =>
                                         <option key={ TIPO.id } value={ TIPO.id }>
@@ -62,9 +63,6 @@ class ListarDetalles extends Component {
                                     <FontAwesomeIcon icon={ faCaretDown }/>
                             </span>
                         </div>
-                        <a style={ { cursor : 'pointer' } } onClick={ this.filtrarDatos }>
-                            mostrar
-                        </a>
                         <div className="search-viewC">
                             <input className="search-txt_viewC" type="text" placeholder="Buscar por nombre"/>
                             <a className="search-btn_viewC">
