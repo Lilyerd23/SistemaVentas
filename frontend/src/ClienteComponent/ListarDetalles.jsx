@@ -70,6 +70,19 @@ class ListarDetalles extends Component {
                             </a>
                         </div>
                     </div>
+                    <br/>
+                    <div className="container-dataC">{
+                        this.state.clientes.map(
+                            CLIENTE =>
+                                <did className="box-information" key={ CLIENTE.id }>
+                                    <label className="lbl-viewC">
+                                        Tipo:
+                                    </label>
+                                    <div className="result-tipo">{ CLIENTE.tipo.tipo }</div>
+                                </did>
+                        )
+                    }
+                    </div>
                 </div>
             </div>
         )
