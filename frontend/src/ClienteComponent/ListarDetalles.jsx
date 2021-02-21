@@ -4,6 +4,7 @@ import ClienteService            from "./service/ClienteService";
 import TipoService               from "./service/TipoService";
 import { FontAwesomeIcon }       from "@fortawesome/react-fontawesome";
 import { faCaretDown, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faUserTie }             from "@fortawesome/free-solid-svg-icons";
 
 class ListarDetalles extends Component {
 
@@ -74,11 +75,25 @@ class ListarDetalles extends Component {
                     <div className="container-dataC">{
                         this.state.clientes.map(
                             CLIENTE =>
-                                <did className="box-information" key={ CLIENTE.id }>
-                                    <label className="lbl-viewC">
-                                        Tipo:
-                                    </label>
-                                    <div className="result-tipo">{ CLIENTE.tipo.tipo }</div>
+                                <did key={ CLIENTE.id }>
+                                    <div className="card-box">
+                                        <div className="card-client">
+                                            <i className="card-client-icon"><FontAwesomeIcon icon={ faUserTie }/></i>
+                                            <h2 className="card-client-title">Cliente</h2>
+                                            { CLIENTE.descripcion }
+                                        </div>
+                                        <div className="card-info">
+                                            <label className="lbl-viewC">
+                                                Tipo:
+                                            </label>
+                                            <div className="result-tipo">{ CLIENTE.tipo.tipo }</div>
+                                        </div>
+                                        <div className="card-sales">
+                                            <div>
+                                                <h3 className="card-sales-title">Detalle de ventas</h3>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </did>
                         )
                     }
