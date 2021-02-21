@@ -2,8 +2,8 @@ import "./styles/ListarDetalle.scss"
 import React, { Component } from "react";
 import ClienteService       from "./service/ClienteService";
 import TipoService          from "./service/TipoService";
-import { FontAwesomeIcon }  from "@fortawesome/react-fontawesome";
-import { faCaretDown }      from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon }       from "@fortawesome/react-fontawesome";
+import { faCaretDown, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 class ListarDetalles extends Component {
 
@@ -28,7 +28,7 @@ class ListarDetalles extends Component {
                    } )
     }
 
-    filtrarDatos( idTipo ) {
+    filtrarDatos( id_Tipo ) {
         ClienteService.listarPorTipo( this.state.idTipo )
                       .then( listaC => {
                           this.setState( { clientes : listaC.data } )
@@ -47,19 +47,27 @@ class ListarDetalles extends Component {
                     <h2 className="title-main">Detalles de los clientes</h2>
                 </div>
                 <div className="container-main-viewC">
-                    <div className="dropdown-viewC">
-                        <select className="dropdown-list-viewC" value={ this.state.IDtipoSelect }
-                                onChange={ this.optionSelected }>
-                            { this.state.tipos.map(
-                                TIPO =>
-                                    <option key={ TIPO.id } value={ TIPO.id }>
-                                        { TIPO.tipo }
-                                    </option>
-                            ) }
-                        </select>
-                        <span className="custom-arrow-viewC">
+                    <div className="search-list">
+                        <div className="dropdown-viewC">
+                            <select className="dropdown-list-viewC" value={ this.state.IDtipoSelect }
+                                    onChange={ this.optionSelected }>
+                                { this.state.tipos.map(
+                                    TIPO =>
+                                        <option key={ TIPO.id } value={ TIPO.id }>
+                                            { TIPO.tipo }
+                                        </option>
+                                ) }
+                            </select>
+                            <span className="custom-arrow-viewC">
                                     <FontAwesomeIcon icon={ faCaretDown }/>
                                 </span>
+                        </div>
+                        <div className="search-viewC">
+                            <input className="search-txt_viewC" type="text" placeholder="Buscar por nombre"/>
+                            <a className="search-btn_viewC">
+                                <i><FontAwesomeIcon icon={ faSearch }/></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
