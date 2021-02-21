@@ -1,7 +1,7 @@
 import "./styles/ListarDetalle.scss"
-import React, { Component } from "react";
-import ClienteService       from "./service/ClienteService";
-import TipoService          from "./service/TipoService";
+import React, { Component }      from "react";
+import ClienteService            from "./service/ClienteService";
+import TipoService               from "./service/TipoService";
 import { FontAwesomeIcon }       from "@fortawesome/react-fontawesome";
 import { faCaretDown, faSearch } from "@fortawesome/free-solid-svg-icons";
 
@@ -13,8 +13,7 @@ class ListarDetalles extends Component {
             clientes : [],
             tipos : [],
 
-            IDtipoSelect : '1',
-            idTipo : '1'
+            IDtipoSelect : '1'
         }
 
         this.filtrarDatos = this.filtrarDatos.bind( this );
@@ -28,10 +27,11 @@ class ListarDetalles extends Component {
                    } )
     }
 
-    filtrarDatos( id_Tipo ) {
-        ClienteService.listarPorTipo( this.state.idTipo )
+    filtrarDatos() {
+        ClienteService.listarPorTipo( this.state.IDtipoSelect )
                       .then( listaC => {
                           this.setState( { clientes : listaC.data } )
+                          console.log( listaC.data )
                       } )
     }
 
@@ -60,8 +60,11 @@ class ListarDetalles extends Component {
                             </select>
                             <span className="custom-arrow-viewC">
                                     <FontAwesomeIcon icon={ faCaretDown }/>
-                                </span>
+                            </span>
                         </div>
+                        <a style={ { cursor : 'pointer' } } onClick={ this.filtrarDatos }>
+                            mostrar
+                        </a>
                         <div className="search-viewC">
                             <input className="search-txt_viewC" type="text" placeholder="Buscar por nombre"/>
                             <a className="search-btn_viewC">

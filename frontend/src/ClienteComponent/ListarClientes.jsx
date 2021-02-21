@@ -326,8 +326,7 @@ class ListarClientes extends Component {
                                                 <div className="wrapper">
                                                     <a className="btnVer"
                                                        onClick={ () => this.actionVerInfo( cliente.id ) }>
-                                                        <i><FontAwesomeIcon icon={ faInfo } className="iconFont"/>
-                                                        </i>
+                                                        <i><FontAwesomeIcon icon={ faInfo } className="iconFont"/></i>
                                                     </a>
                                                 </div>
                                             </td>
