@@ -1,0 +1,49 @@
+.title-details {
+  padding-bottom: 1em;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-bottom: 1px;
+  border-style: solid;
+  border-bottom-color: #ededed;
+  width: 70rem;
+}
+
+.title-main {
+  padding-left: 15px;
+  color: #ededed;
+  cursor: default;
+}
+
+.container-main-viewC {
+  margin: 1em auto;
+  height: 590px;
+  box-shadow: -1px 4px 20px 0 rgba(0, 0, 0, 0.35);
+  padding: 1em 3px 30px 1em;
+}
+
+.dropdown-viewC {
+  width: 200px;
+  display: grid;
+  position: relative;
+}
+
+.dropdown-list-viewC {
+  width: 100%;
+  padding: .5em;
+  background: #12192c;
+}
+
+.custom-arrow-viewC {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #060811;
+  display: block;
+  height: 100%;
+  width: 2rem;
+  pointer-events: none;
+  padding-top: 6px;
+  padding-left: 10px;
+  color: #ededed;
+}

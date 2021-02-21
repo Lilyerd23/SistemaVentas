@@ -1,6 +1,9 @@
+import "./styles/ListarDetalle.scss"
 import React, { Component } from "react";
 import ClienteService       from "./service/ClienteService";
 import TipoService          from "./service/TipoService";
+import { FontAwesomeIcon }  from "@fortawesome/react-fontawesome";
+import { faCaretDown }      from "@fortawesome/free-solid-svg-icons";
 
 class ListarDetalles extends Component {
 
@@ -9,10 +12,13 @@ class ListarDetalles extends Component {
         this.state = {
             clientes : [],
             tipos : [],
+
+            IDtipoSelect : '1',
             idTipo : '1'
         }
 
         this.filtrarDatos = this.filtrarDatos.bind( this );
+        this.optionSelected = this.optionSelected.bind( this );
     }
 
     componentDidMount() {
@@ -29,11 +35,32 @@ class ListarDetalles extends Component {
                       } )
     }
 
+    optionSelected = ( event ) => {
+        this.setState( { IDtipoSelect : event.target.value } )
+    }
+
     render() {
         return (
             <div>
+                <br/>
                 <div className="title-details">
                     <h2 className="title-main">Detalles de los clientes</h2>
+                </div>
+                <div className="container-main-viewC">
+                    <div className="dropdown-viewC">
+                        <select className="dropdown-list-viewC" value={ this.state.IDtipoSelect }
+                                onChange={ this.optionSelected }>
+                            { this.state.tipos.map(
+                                TIPO =>
+                                    <option key={ TIPO.id } value={ TIPO.id }>
+                                        { TIPO.tipo }
+                                    </option>
+                            ) }
+                        </select>
+                        <span className="custom-arrow-viewC">
+                                    <FontAwesomeIcon icon={ faCaretDown }/>
+                                </span>
+                    </div>
                 </div>
             </div>
         )
