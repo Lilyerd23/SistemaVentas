@@ -105,13 +105,13 @@
   display: inline-flex;
   width: 100%;
   height: 14rem;
-  background: #ededed;
+  background: grey;
   margin-top: 10px;
   padding: .5em;
 }
 
 .card-client {
-  background: #834a2a;
+  background: #12192c;
   margin: 0;
   width: 20em;
   padding: 2.4em 20px 20px;
@@ -130,7 +130,7 @@
 
 .card-info {
   padding: 1rem;
-  background: #f5a623;
+  background: #ededed;
   width: 80%;
 }
 
@@ -138,13 +138,14 @@
   margin-left: 10px;
   padding: 1rem;
   width: 38em;
-  background: #2361ab;
+  background: darkslategray;
   cursor: default;
 }
 
 .card-sales-title {
   text-align: center;
   margin-bottom: 10px;
+  color: #ededed;
 }
 /*=================================================================*/
 

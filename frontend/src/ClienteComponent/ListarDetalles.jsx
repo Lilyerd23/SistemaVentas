@@ -36,12 +36,11 @@ class ListarDetalles extends Component {
         ClienteService.listarPorTipo( this.state.IDtipoSelect )
                       .then( listaC => {
                           this.setState( { clientes : listaC.data } )
-                          console.log( listaC.data )
                       } )
     }
 
     setLblTipo( idT ) {
-        this.state.lblTipo = idT === 1 ? 'DNI: ' : 'RUC: '
+        this.state.lblTipo = idT - 1 === 1 ? 'RUC: ' : 'DNI: '
     }
 
     optionSelected = ( event ) => {
