@@ -1,6 +1,5 @@
 package com.uns.api.Tipo.controller;
 
-import com.uns.api.Cliente.entity.Cliente;
 import com.uns.api.Tipo.entity.Tipo;
 import com.uns.api.Tipo.service.TipoService;
 import org.springframework.http.HttpStatus;
