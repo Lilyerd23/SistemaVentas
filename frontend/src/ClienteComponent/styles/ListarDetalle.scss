@@ -104,19 +104,20 @@
 .card-box {
   display: inline-flex;
   width: 100%;
-  height: auto;
+  height: 14rem;
   background: #ededed;
   margin-top: 10px;
   padding: .5em;
-  border-radius: 10px;
 }
 
 .card-client {
-  background: #2894ff;
+  background: #834a2a;
   margin: 0;
-  border-radius: 10px 0 0 10px;
-  padding: 1rem;
+  width: 20em;
+  padding: 2.4em 20px 20px;
   text-align: center;
+  color: #ededed;
+  cursor: default;
 }
 
 .card-client-title {
@@ -131,18 +132,28 @@
   padding: 1rem;
   background: #f5a623;
   width: 80%;
-  border-radius: 0 10px 10px 0;
 }
 
 .card-sales {
-  display: flex;
   margin-left: 10px;
   padding: 1rem;
-  width: auto;
+  width: 38em;
   background: #2361ab;
-  border-radius: 10px;
+  cursor: default;
 }
 
 .card-sales-title {
   text-align: center;
+  margin-bottom: 10px;
+}
+/*=================================================================*/
+
+/*============= Tabla de ventas ===============*/
+.table-details {
+  border-collapse: collapse;
+  margin: 5px auto;
+}
+
+.title-table {
+  font-size: 14px;
 }

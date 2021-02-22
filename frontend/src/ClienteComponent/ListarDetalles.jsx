@@ -5,6 +5,7 @@ import TipoService               from "./service/TipoService";
 import { FontAwesomeIcon }       from "@fortawesome/react-fontawesome";
 import { faCaretDown, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faUserTie }             from "@fortawesome/free-solid-svg-icons";
+import moment                    from "moment";
 
 class ListarDetalles extends Component {
 
@@ -14,7 +15,8 @@ class ListarDetalles extends Component {
             clientes : [],
             tipos : [],
 
-            IDtipoSelect : '1'
+            IDtipoSelect : 1,
+            lblTipo : ''
         }
 
         this.filtrarDatos = this.filtrarDatos.bind( this );
@@ -30,11 +32,16 @@ class ListarDetalles extends Component {
     }
 
     filtrarDatos() {
+        this.setLblTipo( this.state.IDtipoSelect )
         ClienteService.listarPorTipo( this.state.IDtipoSelect )
                       .then( listaC => {
                           this.setState( { clientes : listaC.data } )
                           console.log( listaC.data )
                       } )
+    }
+
+    setLblTipo( idT ) {
+        this.state.lblTipo = idT === 1 ? 'DNI: ' : 'RUC: '
     }
 
     optionSelected = ( event ) => {
@@ -72,7 +79,7 @@ class ListarDetalles extends Component {
                         </div>
                     </div>
                     <br/>
-                    <div className="container-dataC">{
+                    <div>{
                         this.state.clientes.map(
                             CLIENTE =>
                                 <did key={ CLIENTE.id }>
@@ -83,15 +90,48 @@ class ListarDetalles extends Component {
                                             { CLIENTE.descripcion }
                                         </div>
                                         <div className="card-info">
-                                            <label className="lbl-viewC">
-                                                Tipo:
-                                            </label>
-                                            <div className="result-tipo">{ CLIENTE.tipo.tipo }</div>
+                                            <div className="content-body1">
+                                                <div>
+                                                    <label className="lbl-viewC">
+                                                        Tipo:
+                                                    </label>
+                                                    <div className="result-tipo">{ CLIENTE.tipo.tipo }</div>
+                                                </div>
+                                                <div>
+                                                    <label className="lbl-viewC">
+                                                        { this.state.lblTipo }
+                                                    </label>
+                                                    <div className="result-code">{ CLIENTE.codigo }</div>
+                                                </div>
+                                            </div>
+                                            <div className="content-body2">
+                                                <div className="cdate">
+                                                    <label className="lbl-viewC2 dateR">
+                                                        Fecha de Registro:
+                                                    </label>
+                                                    <div className="result-date">{ moment( CLIENTE.fecha_registro )
+                                                        .format( "DD/MM/YYYY" ) }</div>
+                                                </div>
+                                                <div>
+                                                    <label className="lbl-viewC2">
+                                                        Estado:
+                                                    </label>
+                                                    <div className="result-state">{ CLIENTE.estado }</div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div className="card-sales">
                                             <div>
-                                                <h3 className="card-sales-title">Detalle de ventas</h3>
+                                                <h3 className="card-sales-title">Detalles generales de sus compras</h3>
                                             </div>
+                                            <table className="table-details">
+                                                <thead>
+                                                <tr className="table-cabecera table-details">
+                                                    <th className="title-table">Fecha de compra</th>
+                                                    <th className="title-table">Monto total</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
                                         </div>
                                     </div>
                                 </did>
