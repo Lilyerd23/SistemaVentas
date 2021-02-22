@@ -1,5 +1,7 @@
 package com.uns.api.Marca.entity;
 
+import com.uns.api.Producto.entity.Producto;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,6 +20,11 @@ public class Marca {
 	         nullable = false )
 	private String nombre;
 	
+	@OneToMany( cascade = CascadeType.ALL,
+	            mappedBy = "marca",
+	            fetch = FetchType.LAZY )
+	private List<Producto> productos;
+	
 	public Marca() {
 	}
 	
@@ -34,6 +41,10 @@ public class Marca {
 	}
 	
 	public void setNombre( String nombre ) {
-		this.nombre = nombre;
+		this.nombre = nombre != null && nombre.isEmpty() ? null : nombre;
+	}
+	
+	public void setProductos( List<Producto> productos ) {
+		this.productos = productos;
 	}
 }

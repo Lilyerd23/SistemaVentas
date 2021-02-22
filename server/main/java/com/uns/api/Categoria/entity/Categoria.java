@@ -1,6 +1,9 @@
 package com.uns.api.Categoria.entity;
 
+import com.uns.api.Producto.entity.Producto;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table( name = "categoria" )
@@ -16,6 +19,11 @@ public class Categoria {
 	         length = 45,
 	         nullable = false )
 	private String nombre;
+	
+	@OneToMany( cascade = CascadeType.ALL,
+	            mappedBy = "categoria",
+	            fetch = FetchType.LAZY )
+	private List<Producto> productos;
 	
 	public Categoria() {
 	}
@@ -33,6 +41,10 @@ public class Categoria {
 	}
 	
 	public void setNombre( String nombre ) {
-		this.nombre = nombre;
+		this.nombre = nombre != null && nombre.isEmpty() ? null : nombre;
+	}
+	
+	public void setProductos( List<Producto> productos ) {
+		this.productos = productos;
 	}
 }
