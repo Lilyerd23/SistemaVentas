@@ -50,7 +50,7 @@ public class TipoServiceImpl implements TipoService {
 		if ( !Objects.equals( find.getTipo(),
 		                      tipo.getTipo() ) ) {
 			Optional<Tipo> nombreTipo = tipoRepository.findByTipo( tipo.getTipo() );
-			boolean existe = nombreTipo.isPresent();
+			boolean        existe     = nombreTipo.isPresent();
 			if ( !existe ) {
 				actualizado = tipoRepository.saveAndFlush( tipo );
 			}
