@@ -40,8 +40,8 @@ public class ClienteController {
 		                             HttpStatus.OK );
 	}
 	
-	@GetMapping( "/listar/{flitro}" )
-	public ResponseEntity<List<Cliente>> filtrarClientes( @PathVariable( "flitro" ) String filtro ) {
+	@GetMapping( "/listar/{filtro}" )
+	public ResponseEntity<List<Cliente>> filtrarClientes( @PathVariable( "filtro" ) String filtro ) {
 		return new ResponseEntity<>( clienteService.findClients( filtro ),
 		                             HttpStatus.OK );
 	}
