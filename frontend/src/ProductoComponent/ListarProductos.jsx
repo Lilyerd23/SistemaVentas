@@ -11,6 +11,9 @@ class ListarProductos extends Component {
         this.state = {
             productos : []
         }
+
+        this.agregarProducto = this.agregarProducto.bind( this );
+        this.editarProducto = this.editarProducto.bind( this );
     }
 
     componentDidMount() {
@@ -18,6 +21,14 @@ class ListarProductos extends Component {
                        .then( listaP => {
                            this.setState( { productos : listaP.data } )
                        } )
+    }
+
+    agregarProducto() {
+        this.props.history.push( "/registro-cliente/agregar" )
+    }
+
+    editarProducto( IDproducto ) {
+        this.props.history.push( "/registro-cliente/" + IDproducto )
     }
 
     render() {
@@ -34,7 +45,7 @@ class ListarProductos extends Component {
                 <div className="container_listaP">
                     <div className="box-nuevo">
                         <div className="box-add">
-                            <a className="btn-add btnNew">
+                            <a className="btn-add btnNew" onClick={ this.agregarProducto }>
                                 <i className="icon-addBtn"><FontAwesomeIcon icon={ faBoxOpen }/></i>
                                 Nuevo Producto
                             </a>
@@ -48,8 +59,8 @@ class ListarProductos extends Component {
                                 <th className="Ttabla">Categoria</th>
                                 <th className="Ttabla">Marca</th>
                                 <th className="Ttabla">Nombre</th>
-                                <th className="Ttabla">P. de Compra</th>
-                                <th className="Ttabla">P. de Venta</th>
+                                <th className="Ttabla">Precio de Compra</th>
+                                <th className="Ttabla">Precio de Venta</th>
                                 <th className="Ttabla">Cantidad</th>
                                 <th className="Ttabla">Estado</th>
                                 <th className="Ttabla">Acciones</th>
@@ -68,7 +79,8 @@ class ListarProductos extends Component {
                                             <td>{ producto.estado }</td>
                                             <td>
                                                 <div className="wrapper">
-                                                    <a className="btnEditar">
+                                                    <a className="btnEditar"
+                                                       onClick={ () => this.editarProducto( producto.id ) }>
                                                         <i><FontAwesomeIcon icon={ faPen } className="iconFont"/></i>
                                                     </a>
                                                 </div>
