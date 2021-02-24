@@ -28,9 +28,36 @@ public class EmpleadoController {
 		                             HttpStatus.OK );
 	}
 	
-	@GetMapping("/buscar/{idEmpleado}")
+	@GetMapping( "/buscar/{idEmpleado}" )
 	public ResponseEntity<Empleado> buscarEmpleado( @PathVariable( "idEmpleado" ) Integer id ) {
 		return new ResponseEntity<>( empleadoService.findByID( id ),
 		                             HttpStatus.OK );
+	}
+	
+	@GetMapping( "/listar/{nombreEmpleado}" )
+	public ResponseEntity<List<Empleado>> filtrarEmpleados( @PathVariable( "nombreEmpleado" ) String filtro ) {
+		return new ResponseEntity<>( empleadoService.findEmployees( filtro ),
+		                             HttpStatus.OK );
+	}
+	
+	@PostMapping( "/registrar" )
+	public ResponseEntity<Empleado> registrarEmpleado( @RequestBody Empleado empleado ) {
+		Empleado nuevo = empleadoService.addNew( empleado );
+		return new ResponseEntity<>( nuevo,
+		                             HttpStatus.CREATED );
+	}
+	
+	@PostMapping( "/actualizar" )
+	public ResponseEntity<Empleado> actualizarEmpleado( @RequestBody Empleado empleado ) {
+		Empleado actualizado = empleadoService.update( empleado );
+		return new ResponseEntity<>( actualizado,
+		                             HttpStatus.OK );
+	}
+	
+	@DeleteMapping( "/eliminar/{idEmpleado}" )
+	public ResponseEntity<Empleado> eliminarEmpleado( @PathVariable( "idEmpleado" ) Integer id ) {
+		empleadoService.delete( id );
+		return new ResponseEntity<>( null,
+		                             HttpStatus.GONE );
 	}
 }
