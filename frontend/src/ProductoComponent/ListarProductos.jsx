@@ -1,16 +1,22 @@
 import "./styles/ListarProducto.scss"
-import React, { Component }          from "react";
-import ProductoService               from "./service/ProductoService";
-import { FontAwesomeIcon }           from "@fortawesome/react-fontawesome";
-import { faBoxOpen, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import React, { Component }    from "react";
+import ProductoService         from "./service/ProductoService";
+import { FontAwesomeIcon }     from "@fortawesome/react-fontawesome";
+import { faBoxOpen, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faPen, faTrash }      from "@fortawesome/free-solid-svg-icons";
 
 class ListarProductos extends Component {
 
     constructor( props ) {
         super( props );
         this.state = {
-            productos : []
+            productos : [],
+
+            valueSelected : 'porNombre',
+            lblPH : 'Buscar por Nombre'
         }
+
+        this.searchSelected = this.searchSelected.bind( this );
 
         this.agregarProducto = this.agregarProducto.bind( this );
         this.editarProducto = this.editarProducto.bind( this );
@@ -31,6 +37,20 @@ class ListarProductos extends Component {
         this.props.history.push( "/registro-cliente/" + IDproducto )
     }
 
+    searchSelected = ( event ) => {
+        this.setState( { valueSelected : event.target.value } )
+    }
+
+    getInput() {
+        if ( this.state.valueSelected === "porNombre" ) {
+            return <input className="input" type="text" placeholder="Buscar por Nombre"/>
+        } else if ( this.state.valueSelected === "porCategoria" ) {
+            return <input className="input" type="text" placeholder="Buscar por Categoria"/>
+        } else {
+            return <input className="input" type="text" placeholder="Buscar por Marca"/>
+        }
+    }
+
     render() {
         return (
             <div>
@@ -49,6 +69,22 @@ class ListarProductos extends Component {
                                 <i className="icon-addBtn"><FontAwesomeIcon icon={ faBoxOpen }/></i>
                                 Nuevo Producto
                             </a>
+                        </div>
+                        <div className="wrapper-search">
+                            <div className="box_search">
+                                <div className="dropdown-busqueda">
+                                    <select className="options-search" value={ this.state.valueSelected }
+                                            onChange={ this.searchSelected }>
+                                        <option className="option-S" value="porNombre">Nombre</option>
+                                        <option className="option-S" value="porCategoria">Categoria</option>
+                                        <option className="option-S" value="porMarca">Marca</option>
+                                    </select>
+                                </div>
+                                <div className="search_field">
+                                    { this.getInput() }
+                                    <i className="icon-lupa"><FontAwesomeIcon icon={ faSearch }/></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
