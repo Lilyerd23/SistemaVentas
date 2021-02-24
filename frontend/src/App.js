@@ -21,7 +21,7 @@ function App() {
                         <Route path="/view-detalles" exact component={ ListarDetalles }/>
 
                         <Route path="/product-list" exact component={ ListarProductos }/>
-                        <Route path="/registro-cliente/:id" exact component={ RegistrarProductos }/>
+                        <Route path="/registro-producto/:id" exact component={ RegistrarProductos }/>
                     </Switch>
                 </div>
             </Router>

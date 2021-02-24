@@ -30,11 +30,11 @@ class ListarProductos extends Component {
     }
 
     agregarProducto() {
-        this.props.history.push( "/registro-cliente/agregar" )
+        this.props.history.push( "/registro-producto/agregar" )
     }
 
     editarProducto( IDproducto ) {
-        this.props.history.push( "/registro-cliente/" + IDproducto )
+        this.props.history.push( "/registro-producto/" + IDproducto )
     }
 
     searchSelected = ( event ) => {
@@ -42,12 +42,13 @@ class ListarProductos extends Component {
     }
 
     getInput() {
-        if ( this.state.valueSelected === "porNombre" ) {
-            return <input className="input" type="text" placeholder="Buscar por Nombre"/>
-        } else if ( this.state.valueSelected === "porCategoria" ) {
-            return <input className="input" type="text" placeholder="Buscar por Categoria"/>
-        } else {
-            return <input className="input" type="text" placeholder="Buscar por Marca"/>
+        switch (this.state.valueSelected) {
+            case "porNombre":
+                return <input className="input" type="text" placeholder="Buscar por Nombre"/>
+            case "porCategoria":
+                return <input className="input" type="text" placeholder="Buscar por Categoria"/>
+            default:
+                return <input className="input" type="text" placeholder="Buscar por Marca"/>
         }
     }
 
