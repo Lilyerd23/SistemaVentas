@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
@@ -22,13 +23,11 @@ public class ClienteServiceImpl implements ClienteService {
 	
 	@Override
 	public List<Cliente> findClients( String filtro ) {
-		List<Cliente> lista = new ArrayList<>();
-		for ( Cliente buscados : clienteRepository.findAll() ) {
-			if ( buscados.getDescripcion().contains( filtro ) ) {
-				lista.add( buscados );
-			}
-		}
-		return lista;
+		return clienteRepository
+				.findAll()
+				.stream()
+				.filter( buscados -> buscados.getDescripcion().contains( filtro ) )
+				.collect( Collectors.toList() );
 	}
 	
 	@Override
