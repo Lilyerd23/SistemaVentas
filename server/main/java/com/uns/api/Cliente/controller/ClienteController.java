@@ -28,7 +28,7 @@ public class ClienteController {
 		                             HttpStatus.OK );
 	}
 	
-	@GetMapping( "/listar/id/{idCliente}" )
+	@GetMapping( "/buscar/{idCliente}" )
 	public ResponseEntity<Cliente> buscarCliente( @PathVariable( "idCliente" ) Integer id ) {
 		return new ResponseEntity<>( clienteService.findByID( id ),
 		                             HttpStatus.OK );

@@ -29,7 +29,7 @@ public class CategoriaController {
 	@GetMapping( "/listar/{idCategoria}" )
 	public ResponseEntity<Categoria> buscarCategoria( @PathVariable( "idCategoria" ) Integer id ) {
 		return new ResponseEntity<>( categoriaService.findByID( id ),
-		                             HttpStatus.FOUND );
+		                             HttpStatus.OK );
 	}
 	
 	@PostMapping( "/registrar" )

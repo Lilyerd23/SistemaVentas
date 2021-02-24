@@ -31,7 +31,7 @@ public class MarcaController {
 	@GetMapping( "/listar/{idMarca}" )
 	public ResponseEntity<Marca> buscarMarca( @PathVariable( "idMarca" ) Integer id ) {
 		return new ResponseEntity<>( marcaService.findByID( id ),
-		                             HttpStatus.FOUND );
+		                             HttpStatus.OK );
 	}
 	
 	@PostMapping( "/registrar" )

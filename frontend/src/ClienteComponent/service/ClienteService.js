@@ -9,7 +9,7 @@ class ClienteService {
     }
 
     buscarClienteporID( clienteID ) {
-        return axios.get( TIPO_API_BASE_URL + "/listar/id/" + clienteID )
+        return axios.get( TIPO_API_BASE_URL + "/buscar/" + clienteID )
     }
 
     listarPorTipo( tipoId ) {
