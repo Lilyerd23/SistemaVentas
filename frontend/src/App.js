@@ -18,7 +18,7 @@ function App() {
                     <Route path="/view-tipos" exact component={ ListarTipos }/>
                     <Route path="/view-detalles" exact component={ ListarDetalles }/>
 
-                    <Route path="/component-productos" exact component={ ListarProductos }/>
+                    <Route path="/product-list" exact component={ ListarProductos }/>
                 </div>
             </Router>
         </div>

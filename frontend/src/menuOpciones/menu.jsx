@@ -25,7 +25,7 @@ class Menu extends Component {
                                 <span className="nav__text">Ventas</span>
                             </a>
 
-                            <a href={ "/component-productos" } className="nav__link">
+                            <a href={ "/product-list" } className="nav__link">
                                 <i className="nav__icon"><FontAwesomeIcon icon={ faShoppingCart }/></i>
                                 <span className="nav__text">Productos</span>
                             </a>
