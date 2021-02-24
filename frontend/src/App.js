@@ -5,6 +5,7 @@ import ComponenteCliente                  from "./ClienteComponent/ComponenteCli
 import ListarClientes                     from "./ClienteComponent/ListarClientes";
 import ListarTipos                        from "./ClienteComponent/ListarTipos";
 import ListarDetalles                     from "./ClienteComponent/ListarDetalles";
+import ListarProductos                    from "./ProductoComponent/ListarProductos";
 
 function App() {
     return (
@@ -16,6 +17,8 @@ function App() {
                     <Route path="/view-clientes" exact component={ ListarClientes }/>
                     <Route path="/view-tipos" exact component={ ListarTipos }/>
                     <Route path="/view-detalles" exact component={ ListarDetalles }/>
+
+                    <Route path="/component-productos" exact component={ ListarProductos }/>
                 </div>
             </Router>
         </div>

@@ -1,31 +1,31 @@
 import axios from "axios";
 
-const TIPO_API_BASE_URL = "http://localhost:8080/cliente"
+const CLIENTE_API_BASE_URL = "http://localhost:8080/cliente"
 
 class ClienteService {
 
     mostrarCliente() {
-        return axios.get( TIPO_API_BASE_URL + "/listar" )
+        return axios.get( CLIENTE_API_BASE_URL + "/listar" )
     }
 
     buscarClienteporID( clienteID ) {
-        return axios.get( TIPO_API_BASE_URL + "/buscar/" + clienteID )
+        return axios.get( CLIENTE_API_BASE_URL + "/buscar/" + clienteID )
     }
 
     listarPorTipo( tipoId ) {
-        return axios.get( TIPO_API_BASE_URL + "/listar/tipo/" + tipoId )
+        return axios.get( CLIENTE_API_BASE_URL + "/listar/tipo/" + tipoId )
     }
 
     crearCliente( cliente ) {
-        return axios.post( TIPO_API_BASE_URL + "/registrar", cliente )
+        return axios.post( CLIENTE_API_BASE_URL + "/registrar", cliente )
     }
 
     actualizarCliente( cliente ) {
-        return axios.put( TIPO_API_BASE_URL + "/actualizar", cliente )
+        return axios.put( CLIENTE_API_BASE_URL + "/actualizar", cliente )
     }
 
     eliminarCliente( clienteID ) {
-        return axios.delete( TIPO_API_BASE_URL + "/eliminar/" + clienteID )
+        return axios.delete( CLIENTE_API_BASE_URL + "/eliminar/" + clienteID )
     }
 }
 
