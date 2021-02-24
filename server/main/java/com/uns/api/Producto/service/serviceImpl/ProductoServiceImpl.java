@@ -55,8 +55,12 @@ public class ProductoServiceImpl implements ProductoService {
 	}
 	
 	@Override
-	public List<Producto> findByCategoria( Integer idCategoria ) {
-		return new ArrayList<>( productoRepository.porCategoria( idCategoria ) );
+	public List<Producto> findByCategoria( String filtroCategoria ) {
+		return productoRepository
+				.findAll()
+				.stream()
+				.filter( producto -> producto.getCategoria().getNombre().contains( filtroCategoria ) )
+				.collect( Collectors.toList() );
 	}
 	
 	@Override

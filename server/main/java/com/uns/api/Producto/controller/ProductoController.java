@@ -40,9 +40,9 @@ public class ProductoController {
 		                             HttpStatus.OK );
 	}
 	
-	@GetMapping( "/listar/categoria/{idCategoria}" )
-	public ResponseEntity<List<Producto>> listarPorCategoria( @PathVariable( "idCategoria" ) Integer id ) {
-		return new ResponseEntity<>( productoService.findByCategoria( id ),
+	@GetMapping( "/listar/categoria/{nombreCategoria}" )
+	public ResponseEntity<List<Producto>> listarPorCategoria( @PathVariable( "nombreCategoria" ) String filtroCategoria ) {
+		return new ResponseEntity<>( productoService.findByCategoria( filtroCategoria ),
 		                             HttpStatus.OK );
 	}
 	

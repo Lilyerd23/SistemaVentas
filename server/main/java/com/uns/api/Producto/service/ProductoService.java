@@ -9,7 +9,7 @@ public interface ProductoService extends GeneralService<Producto, Integer> {
 	
 	List<Producto> findProductos( String filtro );
 	
-	List<Producto> findByCategoria( Integer idCategoria );
+	List<Producto> findByCategoria( String filtroCategoria );
 	
-	List<Producto> findByMarca( String flitroMarca );
+	List<Producto> findByMarca( String filtroMarca );
 }
