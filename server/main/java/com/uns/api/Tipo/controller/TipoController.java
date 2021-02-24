@@ -2,6 +2,7 @@ package com.uns.api.Tipo.controller;
 
 import com.uns.api.Tipo.entity.Tipo;
 import com.uns.api.Tipo.service.TipoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ public class TipoController {
 	
 	private final TipoService tipoService;
 	
+	@Autowired
 	public TipoController( TipoService tipoService ) {
 		this.tipoService = tipoService;
 	}
