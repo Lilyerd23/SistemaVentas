@@ -22,9 +22,6 @@ class ListarClientes extends Component {
             estado : '',
             fechaR : '',
             tipoC : '',
-            tipo : {
-                id : ''
-            },
 
             idCLIENTE : '',
             IDtipoSelect : '1',
