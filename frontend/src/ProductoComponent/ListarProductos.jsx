@@ -37,6 +37,16 @@ class ListarProductos extends Component {
         this.props.history.push( "/registro-producto/" + IDproducto )
     }
 
+    eliminarProduct( id ) {
+        ProductoService.eliminarProducto( id )
+                       .then( () => {
+                           this.setState( {
+                               productos : this.state.productos.filter(
+                                   producto => producto.id !== id )
+                           } )
+                       } )
+    }
+
     searchSelected = ( event ) => {
         this.setState( { valueSelected : event.target.value } )
     }
@@ -122,7 +132,8 @@ class ListarProductos extends Component {
                                                     </a>
                                                 </div>
                                                 <div className="wrapper">
-                                                    <a href={ "/product-list" } className="btnEliminar">
+                                                    <a href={ "/product-list" } className="btnEliminar"
+                                                       onClick={ () => this.eliminarProduct( producto.id ) }>
                                                         <i><FontAwesomeIcon icon={ faTrash } className="iconFont"/></i>
                                                     </a>
                                                 </div>
