@@ -1,10 +1,10 @@
 import "./styles/RegistrarProducto.scss"
-import React, { Component } from "react";
-import ProductoService      from "./service/ProductoService";
-import MarcaService         from "./service/MarcaService";
-import CategoriaService     from "./service/CategoriaService";
-import { FontAwesomeIcon }  from "@fortawesome/react-fontawesome";
-import { faPen, faTrash }   from "@fortawesome/free-solid-svg-icons";
+import React, { Component }         from "react";
+import ProductoService              from "./service/ProductoService";
+import MarcaService                 from "./service/MarcaService";
+import CategoriaService             from "./service/CategoriaService";
+import { FontAwesomeIcon }          from "@fortawesome/react-fontawesome";
+import { faPen, faSearch, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 class RegistrarProductos extends Component {
 
@@ -385,6 +385,20 @@ class RegistrarProductos extends Component {
                                     </form>
                                 </div>
                                 <div>
+                                    <div className="search-box"
+                                         style={ {
+                                             background : "white",
+                                             marginBottom : "10px",
+                                             marginTop : "-10px",
+                                             width : "290px"
+                                         } }>
+                                        <input className="search-txt" type="text"
+                                               style={ { color : "#12192c", fontWeight : "bolder" } }
+                                               placeholder="Buscar Categoria"/>
+                                        <a className="search-btn" style={ { width : "35px" } }>
+                                            <i><FontAwesomeIcon icon={ faSearch }/></i>
+                                        </a>
+                                    </div>
                                     <div className="tabla-categorias">
                                         <thead>
                                         <tr>
@@ -450,6 +464,20 @@ class RegistrarProductos extends Component {
                                     </form>
                                 </div>
                                 <div>
+                                    <div className="search-box"
+                                         style={ {
+                                             background : "white",
+                                             marginBottom : "10px",
+                                             marginTop : "-10px",
+                                             width : "290px"
+                                         } }>
+                                        <input className="search-txt" type="text"
+                                               style={ { color : "#12192c", fontWeight : "bolder" } }
+                                               placeholder="Buscar Marca"/>
+                                        <a className="search-btn" style={ { width : "35px" } }>
+                                            <i><FontAwesomeIcon icon={ faSearch }/></i>
+                                        </a>
+                                    </div>
                                     <div className="tabla-marcas">
                                         <thead>
                                         <tr>
