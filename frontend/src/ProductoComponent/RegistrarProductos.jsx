@@ -34,6 +34,13 @@ class RegistrarProductos extends Component {
             selectedOptionM : ''
         }
 
+        this.chooseMethod = this["chooseMethod"].bind( this );
+        this.changeNombreHandler = this["changeNombreHandler"].bind( this );
+        this.changeCantidadHandler = this["changeCantidadHandler"].bind( this );
+        this.changePrecioVHandler = this["changePrecioVHandler"].bind( this );
+        this.changePrecioCHandler = this["changePrecioCHandler"].bind( this );
+        this.changeEstadoHandler = this["changeEstadoHandler"].bind( this );
+
         this.onChangeValueC = this.onChangeValueC.bind( this );
 
         this.handleActionsC = this.handleActionsC.bind( this );
@@ -43,6 +50,8 @@ class RegistrarProductos extends Component {
 
         this.handleActionsM = this.handleActionsM.bind( this );
         this.chooseMethodM = this.chooseMethodM.bind( this );
+        this.eliminarMarca = this.eliminarMarca.bind( this );
+        this.changeNombreMHandler = this.changeNombreMHandler.bind( this );
     }
 
     componentDidMount() {
@@ -57,13 +66,70 @@ class RegistrarProductos extends Component {
         if ( !(this.state.id === "agregar") ) {
             ProductoService.buscarProductoPorID( this.state.id )
                            .then( ( result ) => {
-                               console.log( result.data )
+                               let Producto = result.data;
+                               this.setState( {
+                                   nombre : Producto.nombre,
+                                   cantidad : Producto.cantidad,
+                                   precioV : Producto.precioVenta,
+                                   precioC : Producto.precioCompra,
+                                   categoriaNombre : Producto.categoria.nombre,
+                                   selectedOptionC : Producto.categoria.id,
+                                   marcaNombre : Producto.marca.nombre,
+                                   selectedOptionM : Producto.marca.id,
+                                   estado : Producto.estado
+                               } )
                            } )
         }
     }
 
     chooseMethod = ( e ) => {
         e.preventDefault()
+        let Producto = {
+            id : null,
+            nombre : this.state.nombre,
+            precioCompra : this.state.precioC,
+            precioVenta : this.state.precioV,
+            cantidad : this.state.cantidad,
+            estado : this.state.estado,
+            categoria : {
+                id : this.state.selectedOptionC
+            },
+            marca : {
+                id : this.state.selectedOptionM
+            }
+        }
+        if ( this.state.id === "agregar" ) {
+            ProductoService.crearProducto( Producto )
+                           .then( () => {
+                               this.props.history.push( "/product-list" )
+                           } )
+        } else {
+            Producto.id = this.state.id
+            ProductoService.actualizaProducto( Producto )
+                           .then( () => {
+                               this.props.history.push( "/product-list" )
+                           } )
+        }
+    }
+
+    changeNombreHandler = ( event ) => {
+        this.setState( { nombre : event.target.value } )
+    }
+
+    changeCantidadHandler = ( event ) => {
+        this.setState( { cantidad : event.target.value } )
+    }
+
+    changePrecioVHandler = ( event ) => {
+        this.setState( { precioV : event.target.value } )
+    }
+
+    changePrecioCHandler = ( event ) => {
+        this.setState( { precioC : event.target.value } )
+    }
+
+    changeEstadoHandler = ( event ) => {
+        this.setState( { estado : event.target.value } )
     }
 
     handleActionsC( IDC ) {
@@ -75,6 +141,7 @@ class RegistrarProductos extends Component {
                                 categoriaNombreE : categoriaSelected.nombre
                             } )
                         } )
+        console.log( this.state.categoriaNombreE )
     }
 
     chooseMethodC = ( e ) => {
@@ -124,6 +191,36 @@ class RegistrarProductos extends Component {
 
     chooseMethodM = ( e ) => {
         e.preventDefault()
+        let Marca = {
+            id : null,
+            nombre : this.state.marcaNombreE
+        }
+        if ( this.state.marcaId === '' ) {
+            MarcaService.crearMarca( Marca )
+                        .then( () => {
+                            window.location.reload();
+                        } )
+        } else {
+            Marca.id = this.state.marcaId
+            MarcaService.actualizarMarca( Marca )
+                        .then( () => {
+                            window.location.reload();
+                        } )
+        }
+    }
+
+    eliminarMarca( id ) {
+        MarcaService.eliminarMarca( id )
+                    .then( () => {
+                        this.setState( {
+                            marcas : this.state.marcas.filter(
+                                marca => marca.id !== id )
+                        } )
+                    } )
+    }
+
+    changeNombreMHandler = ( event ) => {
+        this.setState( { marcaNombreE : event.target.value } )
     }
 
     getTitulo() {
@@ -176,7 +273,8 @@ class RegistrarProductos extends Component {
                         <div className="container-form1">
                             <div className="form-part1">
                                 <form className="form">
-                                    <input type="text" name="nombre" defaultValue={ this.state.nombre }
+                                    <input type="text" name="nombre" value={ this.state.nombre }
+                                           onChange={ this.changeNombreHandler }
                                            required/>
                                     <label className="lbl">
                                             <span className="txt">
@@ -185,7 +283,8 @@ class RegistrarProductos extends Component {
                                     </label>
                                 </form>
                                 <form className="form">
-                                    <input type="number" name="cantidad" defaultValue={ this.state.cantidad }
+                                    <input type="number" name="cantidad" value={ this.state.cantidad }
+                                           onChange={ this.changeCantidadHandler }
                                            required/>
                                     <label className="lbl">
                                             <span className="txt">
@@ -196,7 +295,7 @@ class RegistrarProductos extends Component {
                             </div>
                             <div className="form-part2">
                                 <form className="form">
-                                    <input type="text" name="nombre" defaultValue={ this.state.categoriaNombre }
+                                    <input type="text" name="nombre" value={ this.state.categoriaNombre }
                                            style={ { cursor : "default" } } required/>
                                     <label className="lbl">
                                             <span className="txt">
@@ -205,7 +304,7 @@ class RegistrarProductos extends Component {
                                     </label>
                                 </form>
                                 <form className="form">
-                                    <input type="text" name="nombre" defaultValue={ this.state.marcaNombre }
+                                    <input type="text" name="nombre" value={ this.state.marcaNombre }
                                            style={ { cursor : "default" } } required/>
                                     <label className="lbl">
                                             <span className="txt">
@@ -220,7 +319,8 @@ class RegistrarProductos extends Component {
                                 <legend className="legend-title">Precio</legend>
                                 <div className="form-precio">
                                     <form className="form">
-                                        <input type="number" name="cantidad" defaultValue={ this.state.cantidad }
+                                        <input type="number" name="cantidad" value={ this.state.precioV }
+                                               onChange={ this.changePrecioVHandler }
                                                required/>
                                         <label className="lbl">
                                             <span className="txt">
@@ -229,7 +329,8 @@ class RegistrarProductos extends Component {
                                         </label>
                                     </form>
                                     <form className="form compra">
-                                        <input type="number" name="cantidad" defaultValue={ this.state.cantidad }
+                                        <input type="number" name="cantidad" value={ this.state.precioC }
+                                               onChange={ this.changePrecioCHandler }
                                                required/>
                                         <label className="lbl">
                                             <span className="txt">
@@ -241,7 +342,8 @@ class RegistrarProductos extends Component {
                             </fieldset>
                             <div className="container-estado">
                                 <form className="form">
-                                    <input type="text" name="nombre" defaultValue={ this.state.nombre }
+                                    <input type="text" name="nombre" value={ this.state.estado }
+                                           onChange={ this.changeEstadoHandler }
                                            required/>
                                     <label className="lbl">
                                             <span className="txt">
@@ -252,7 +354,7 @@ class RegistrarProductos extends Component {
                             </div>
                         </div>
                         <div className="container-btns">
-                            <a className="btn-guardar">
+                            <a className="btn-guardar" onClick={ this.chooseMethod }>
                                 Guardar
                             </a>
                             <a href={ "/product-list" } className="btn-cancelar">
@@ -269,9 +371,10 @@ class RegistrarProductos extends Component {
                                         <div className="field-categoria">
                                             <span/>
                                             <input type="text"
+                                                   required
                                                    name="nombre"
                                                    placeholder="Nombre"
-                                                   defaultValue={ this.state.categoriaNombreE }
+                                                   value={ this.state.categoriaNombreE }
                                                    onChange={ this.changeNombreCHandler }/>
                                         </div>
                                         <div className="field-catego space-categ">
@@ -333,9 +436,11 @@ class RegistrarProductos extends Component {
                                         <div className="field-marca">
                                             <span/>
                                             <input type="text"
-                                                   name="nombre"
+                                                   required
+                                                   name="marcaNombreE"
                                                    placeholder="Nombre"
-                                                   defaultValue={ this.state.marcaNombreE }/>
+                                                   value={ this.state.marcaNombreE }
+                                                   onChange={ this.changeNombreMHandler }/>
                                         </div>
                                         <div className="field-marc space-marca">
                                             <a className="btn_guardar-marca" onClick={ this.chooseMethodM }>
@@ -372,7 +477,9 @@ class RegistrarProductos extends Component {
                                                                 </a>
                                                             </div>
                                                             <div className="wrapper">
-                                                                <a className="btnEliminar">
+                                                                <a href={ window.location.pathname }
+                                                                   className="btnEliminar"
+                                                                   onClick={ () => this.eliminarMarca( marca.id ) }>
                                                                     <i><FontAwesomeIcon icon={ faTrash }
                                                                                         className="iconFont"/></i>
                                                                 </a>
